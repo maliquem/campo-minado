@@ -53,7 +53,7 @@ public class Campo {
             }
 
             if (vizinhancaSegura()) {
-                vizinhos.forEach(v -> v.abrir());
+                vizinhos.forEach(Campo::abrir);
             }
 
             return true;
@@ -70,12 +70,20 @@ public class Campo {
         minado = true;
     }
 
+    public boolean isMinado() {
+        return minado;
+    }
+
     public boolean isMarcado() {
         return marcado;
     }
 
     public boolean isAberto() {
         return aberto;
+    }
+
+    void setAberto(boolean aberto) {
+        this.aberto = aberto;
     }
 
     public int getLinha() {
@@ -107,12 +115,12 @@ public class Campo {
             return "X";
         } else if (aberto && minado) {
             return "*";
-        } else if (aberto) {
-            return " ";
         } else if (aberto && minasNaVizinhanca() > 0) {
             return Long.toString(minasNaVizinhanca());
+        } else if (aberto) {
+            return " ";
         } else {
-            return "O";
+            return "?";
         }
     }
 

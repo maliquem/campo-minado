@@ -64,9 +64,7 @@ public class CompoTeste {
     @Test
     public void testeAbrirMinadoNaoMarcado() {
         campo.minar();
-        assertThrows(ExplosaoException.class, () -> {
-            campo.abrir();
-        });
+        assertThrows(ExplosaoException.class, campo::abrir);
     }
 
     @Test
